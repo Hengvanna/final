@@ -1,6 +1,7 @@
 {
   "version": 2,
   "framework": null,
+  "installCommand": "pnpm install && composer install --no-dev --no-interaction",
   "buildCommand": "pnpm run build",
   "functions": {
     "api/index.php": {
