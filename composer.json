@@ -81,9 +81,7 @@
             "php-http/discovery": true
         }
     },
-    "scripts": {
-        "build": "laravel build --output public"
-    },
+    
     "minimum-stability": "stable",
     "prefer-stable": true
 }
