@@ -7,6 +7,9 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
+// Root URL: redirect to dashboard so "/" does not return 404 (e.g. on Vercel)
+Route::get('/', fn () => redirect()->route('dashboard'));
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('categories', CategoryController::class);
