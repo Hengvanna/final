@@ -1,0 +1,101 @@
+<?php
+
+return [
+    // Navbar & layout
+    'Translate' => 'បកប្រែ',
+    'View Profile' => 'មើលប្រវត្តិរូប',
+    'My Profile' => 'ប្រវត្តិរូបរបស់ខ្ញុំ',
+    'Logout' => 'ចាកចេញ',
+
+    // Sidebar
+    'Dashboard' => 'ផ្ទាំងគ្រប់គ្រង',
+    'Categories' => 'ប្រភេទ',
+    'Stock' => 'ស្តុក',
+    'Sales' => 'ការលក់',
+    'Report Stock' => 'របាយការណ៍ស្តុក',
+
+    // Common
+    'Name' => 'ឈ្មោះ',
+    'Qty' => 'ចំនួន',
+    'Price' => 'តម្លៃ',
+    'Value' => 'តម្លៃ',
+    'Total' => 'សរុប',
+    'Date' => 'កាលបរិច្ឆេទ',
+    'Image' => 'រូបភាព',
+    'Year' => 'ឆ្នាំ',
+    'Count' => 'ចំនួន',
+    'Actions' => 'សកម្មភាព',
+    'Edit' => 'កែសម្រួល',
+    'Delete' => 'លុប',
+    'Save' => 'រក្សាទុក',
+    'Cancel' => 'បោះបង់',
+    'Update' => 'ធ្វើបច្ចុប្បន្នភាព',
+    'Search' => 'ស្វែងរក',
+    'Filter' => 'ច្រោះ',
+    'Clear' => 'លុប',
+
+    // Stock
+    'Stock Management' => 'ការគ្រប់គ្រងស្តុក',
+    'Add Tire' => 'បន្ថែមកាប',
+    'Add Stock' => 'បន្ថែមស្តុក',
+    'Code Tire' => 'លេខកូដកាប',
+    'Filter by' => 'ច្រោះតាម',
+    'Brand' => 'យូហាង',
+    'Category' => 'ប្រភេទ',
+    'Search by name or code...' => 'ស្វែងរកតាមឈ្មោះ ឬ លេខកូដ...',
+    'All categories' => 'ប្រភេទទាំងអស់',
+    'Select Name' => 'ជ្រើសរើសឈ្មោះ',
+    'No stocks found.' => 'គ្មានស្តុក។',
+    'Are you sure you want to delete this stock?' => 'តើអ្នកប្រាកដថាចង់លុបស្តុកនេះឬ?',
+
+    // CRED Stock / Reports
+    'CRED Stock' => 'ស្តុក CRED',
+    'items' => 'ធាតុ',
+    'Stock quantity' => 'ចំនួនស្តុក',
+    'Stock value (qty × price)' => 'តម្លៃស្តុក (ចំនួន × តម្លៃ)',
+    'Stock list' => 'បញ្ជីស្តុក',
+    'From date' => 'ពីកាលបរិច្ឆេទ',
+    'To date' => 'ដល់កាលបរិច្ឆេទ',
+    'Transactions' => 'ប្រតិបត្តិការ',
+    'CRED Sales' => 'ការលក់ CRED',
+    'transactions' => 'ប្រតិបត្តិការ',
+    'Sales revenue' => 'ប្រាក់ចំណូលលក់',
+    'Units sold' => 'ចំនួនឯកតាលក់',
+    'Sales list' => 'បញ្ជីលក់',
+    'No sales in this period.' => 'គ្មានការលក់ក្នុងរយៈពេលនេះទេ។',
+    'Total value of current stock.' => 'តម្លៃសរុបនៃស្តុកបច្ចុប្បន្ន។',
+    'Total quantity sold in selected period.' => 'ចំនួនសរុបដែលលក់ក្នុងរយៈពេលដែលជ្រើសរើស។',
+    'Recent sales' => 'ការលក់ថ្មីៗ',
+    'View all' => 'មើលទាំងអស់',
+
+    // Categories / Brand
+    'Brand Management' => 'ការគ្រប់គ្រងយូហាង',
+    'Add Brand' => 'បន្ថែមយូហាង',
+    'Edit Brand' => 'កែសម្រួលយូហាង',
+    'Search by name or year...' => 'ស្វែងរកតាមឈ្មោះ ឬ ឆ្នាំ...',
+    'No categories found.' => 'គ្មានប្រភេទ។',
+    'Are you sure you want to delete this category?' => 'តើអ្នកប្រាកដថាចង់លុបប្រភេទនេះឬ?',
+    'e.g. 2024' => 'ឧ. ២០២៤',
+    'Remove image' => 'លុបរូបភាព',
+    'Max 2MB. Formats: JPEG, PNG, GIF, WebP. Leave empty to keep current.' => 'អតិបរមា 2MB។ ទ្រង់ទ្រាយ៖ JPEG, PNG, GIF, WebP។ ទុកចោលដើម្បីរក្សារូបភាពបច្ចុប្បន្ន។',
+    'Max 2MB. Formats: JPEG, PNG, GIF, WebP' => 'អតិបរមា 2MB។ ទ្រង់ទ្រាយ៖ JPEG, PNG, GIF, WebP',
+
+    // Sales
+    'Add Sale' => 'បន្ថែមការលក់',
+    'Edit Sale' => 'កែសម្រួលការលក់',
+    'All stocks' => 'ស្តុកទាំងអស់',
+    'Search by stock name or code...' => 'ស្វែងរកតាមឈ្មោះ ឬ លេខកូដស្តុក...',
+    'No sales found.' => 'គ្មានការលក់។',
+    'Are you sure you want to delete this sale?' => 'តើអ្នកប្រាកដថាចង់លុបការលក់នេះឬ?',
+    'Select stock' => 'ជ្រើសរើសស្តុក',
+    'Total price' => 'តម្លៃសរុប',
+
+    // Dashboard
+    'Total items' => 'ធាតុសរុប',
+    'Total categories' => 'ប្រភេទសរុប',
+    'Revenue' => 'ប្រាក់ចំណូល',
+    'Total sales' => 'ការលក់សរុប',
+    'Quick Actions' => 'សកម្មភាពរហ័ស',
+    'Manage Stock' => 'គ្រប់គ្រងស្តុក',
+    'New Sale' => 'ការលក់ថ្មី',
+];
