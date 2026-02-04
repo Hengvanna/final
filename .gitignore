@@ -23,3 +23,8 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+git rm file.txt                   # remove the file
+echo 'file.txt' >> .gitignore     # append file to .gitignore
+git add .gitignore                # stage the change
+git commit -m "Removed file.txt"  # commit the change
+git push                          # deploy the change
