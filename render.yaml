@@ -1,0 +1,28 @@
+# Render Blueprint: https://render.com/docs/blueprint-spec
+# After deploy: set APP_KEY in Dashboard → Environment (run: php artisan key:generate --show)
+
+services:
+  - type: web
+    name: laravel-app
+    runtime: docker
+    plan: free
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DATABASE_URL
+        fromDatabase:
+          name: laravel-db
+          property: connectionString
+      - key: APP_URL
+        fromService:
+          type: web
+          name: laravel-app
+          property: host
+
+databases:
+  - name: laravel-db
+    plan: free
