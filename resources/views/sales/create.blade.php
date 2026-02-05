@@ -15,7 +15,7 @@
                             <select name="stock_id" id="stock_id" class="form-select @error('stock_id') is-invalid @enderror" required>
                                 <option value="">{{ __('Select stock') }}</option>
                                 @foreach($stocks as $s)
-                                    <option value="{{ $s->id }}" data-price="{{ $s->price }}" @selected(old('stock_id') == $s->id)>{{ $s->name }} ({{ $s->code_tire }}) — {{ number_format($s->price) }}</option>
+                                    <option value="{{ $s->id }}" data-price="{{ $s->price }}" data-qty="{{ $s->qty }}" @selected(old('stock_id') == $s->id)>{{ $s->name }} ({{ $s->code_tire }}) — {{ number_format($s->qty) }}</option>
                                 @endforeach
                             </select>
                             @error('stock_id')
@@ -25,6 +25,7 @@
                         <div class="mb-3">
                             <label for="qty" class="form-label">{{ __('Qty') }} <span class="text-danger">*</span></label>
                             <input type="number" name="qty" id="qty" class="form-control @error('qty') is-invalid @enderror" value="{{ old('qty', 1) }}" min="1" required>
+                            <small class="form-text text-muted" id="qty-hint"></small>
                             @error('qty')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -74,15 +75,32 @@
                 totalPriceInput.value = (qty * price).toFixed(0);
             }
         }
+        function updateQtyHint() {
+            var opt = stockSelect && stockSelect.options[stockSelect.selectedIndex];
+            var maxQty = opt && opt.value && opt.dataset.qty ? parseInt(opt.dataset.qty, 10) : null;
+            if (maxQty !== null) {
+                qtyInput.setAttribute('max', maxQty);
+                var hintEl = document.getElementById('qty-hint');
+                if (hintEl) hintEl.textContent = '{{ __("Available") }}: ' + maxQty;
+                var current = parseInt(qtyInput.value, 10) || 0;
+                if (current > maxQty) qtyInput.value = maxQty;
+            } else {
+                qtyInput.removeAttribute('max');
+                var hintEl = document.getElementById('qty-hint');
+                if (hintEl) hintEl.textContent = '';
+            }
+        }
         if (stockSelect && priceInput) {
             stockSelect.addEventListener('change', function() {
                 var opt = this.options[this.selectedIndex];
                 if (opt && opt.value && opt.dataset.price) {
                     priceInput.value = opt.dataset.price;
                 }
+                updateQtyHint();
                 updateTotalPrice();
             });
         }
+        updateQtyHint();
         if (qtyInput) qtyInput.addEventListener('input', updateTotalPrice);
         if (priceInput) priceInput.addEventListener('input', updateTotalPrice);
         updateTotalPrice();

@@ -15,10 +15,11 @@ class CategoryController extends Controller
      */
     public function index(Request $request): View
     {
+        // Count qty from all stocks that have the same name as the category
         $query = Category::query()
             ->from('categories')
-            ->leftJoin(DB::raw('(SELECT c2.name AS cat_name, COALESCE(SUM(s.qty), 0) AS total_qty FROM categories c2 INNER JOIN stocks s ON s.id = c2.stock_id GROUP BY c2.name) AS name_totals'), 'name_totals.cat_name', '=', 'categories.name')
-            ->select('categories.*', DB::raw('COALESCE(name_totals.total_qty, 0) AS stock_qty_count'));
+            ->leftJoin(DB::raw('(SELECT c.id AS cat_id, COALESCE(SUM(s.qty), 0) AS total_qty FROM categories c LEFT JOIN stocks s ON s.name = c.name GROUP BY c.id) AS qty_sub'), 'qty_sub.cat_id', '=', 'categories.id')
+            ->select('categories.*', DB::raw('COALESCE(qty_sub.total_qty, 0) AS stock_qty_count'));
 
         if ($request->filled('search')) {
             $search = $request->search;

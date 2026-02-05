@@ -64,7 +64,7 @@ class SaleController extends Controller
     }
 
     /**
-     * Store a newly created sale.
+     * Store a newly created sale and decrement stock.
      */
     public function store(Request $request): RedirectResponse
     {
@@ -74,10 +74,19 @@ class SaleController extends Controller
             'price' => ['required', 'integer', 'min:0'],
             'total_price' => ['required', 'integer', 'min:0'],
         ]);
+
+        $stock = Stock::findOrFail($validated['stock_id']);
+        if ($stock->qty < $validated['qty']) {
+            return back()->withInput()->withErrors([
+                'qty' => __('Not enough stock. Available: :qty', ['qty' => $stock->qty]),
+            ]);
+        }
+
         $validated['total'] = $validated['total_price'];
         $validated['sale_date'] = now();
 
         Sale::create($validated);
+        $stock->decrement('qty', $validated['qty']);
 
         return redirect()->route('sales.index')
             ->with('success', __('Sale created successfully.'));
@@ -104,7 +113,7 @@ class SaleController extends Controller
     }
 
     /**
-     * Update the specified sale.
+     * Update the specified sale and adjust stock accordingly.
      */
     public function update(Request $request, Sale $sale): RedirectResponse
     {
@@ -116,6 +125,28 @@ class SaleController extends Controller
         ]);
         $validated['total'] = $validated['total_price'];
 
+        $newStock = Stock::findOrFail($validated['stock_id']);
+        $oldStock = $sale->stock;
+
+        if ($sale->stock_id === (int) $validated['stock_id']) {
+            $available = $oldStock->qty + $sale->qty;
+            if ($available < $validated['qty']) {
+                return back()->withInput()->withErrors([
+                    'qty' => __('Not enough stock. Available after returning this sale: :qty', ['qty' => $available]),
+                ]);
+            }
+            $oldStock->increment('qty', $sale->qty);
+            $oldStock->decrement('qty', $validated['qty']);
+        } else {
+            if ($newStock->qty < $validated['qty']) {
+                return back()->withInput()->withErrors([
+                    'qty' => __('Not enough stock for selected item. Available: :qty', ['qty' => $newStock->qty]),
+                ]);
+            }
+            $oldStock->increment('qty', $sale->qty);
+            $newStock->decrement('qty', $validated['qty']);
+        }
+
         $sale->update($validated);
 
         return redirect()->route('sales.index')
@@ -123,10 +154,11 @@ class SaleController extends Controller
     }
 
     /**
-     * Remove the specified sale.
+     * Remove the specified sale and restore stock.
      */
     public function destroy(Sale $sale): RedirectResponse
     {
+        $sale->stock->increment('qty', $sale->qty);
         $sale->delete();
 
         return redirect()->route('sales.index')

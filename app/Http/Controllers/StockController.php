@@ -16,7 +16,7 @@ class StockController extends Controller
     public function index(Request $request): View
     {
         $filterBy = $request->get('filter_by', 'name');
-        $query = Stock::query()->with('categories');
+        $query = Stock::query()->with('categories')->where('qty', '>', 0);
 
         if ($filterBy === 'category') {
             $categoryId = $request->get('category_id');

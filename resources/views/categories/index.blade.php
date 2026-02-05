@@ -25,7 +25,7 @@
                                     <th>{{ __('Image') }}</th>
                                     <th>{{ __('Name') }}</th>
                                     <th>{{ __('Year') }}</th>
-                                    <th>{{ __('Qty') }}</th>
+                                    <th>{{ __('Count') }}</th>
                                     <th class="text-end">{{ __('Actions') }}</th>
                                 </tr>
                             </thead>

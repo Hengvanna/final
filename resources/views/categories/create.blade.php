@@ -24,13 +24,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="mb-3">
-                            <label for="count" class="form-label">{{ __('Count') }}</label>
-                            <input type="number" name="count" id="count" class="form-control @error('count') is-invalid @enderror" value="{{ old('count', $category->count ?? 0) }}" min="0">
-                            @error('count')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                        
                         <div class="mb-3">
                             <label for="image" class="form-label">{{ __('Image') }}</label>
                             <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror" accept="image/jpeg,image/jpg,image/png,image/gif,image/webp">
